@@ -10,53 +10,13 @@ struct Task {
     bool completed;
 };
 
-int main() {
-    vector<Task> tasks;
-
-    int choice;
-    do {
-        cout << "\n----- To-Do List Manager -----\n";
-        cout << "1. Add New Task\n";
-        cout << "2. Mark Task as Completed\n";
-        cout << "3. View Tasks\n";
-        cout << "4. Remove Task\n";
-        cout << "5. Exit\n";
-        cout << "-------------------------------\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
-
-        switch (choice) {
-            case 1:
-                addTask(tasks);
-                break;
-            case 2:
-                markTaskCompleted(tasks);
-                break;
-            case 3:
-                viewTasks(tasks);
-                break;
-            case 4:
-                removeTask(tasks);
-                break;
-            case 5:
-                cout << "Exiting program. Goodbye!\n";
-                break;
-            default:
-                cout << "Invalid choice. Please enter a number between 1 and 5.\n";
-        }
-
-    } while (choice != 5);
-
-    return 0;
-}
-
 bool compareDueDates(const Task& task1, const Task& task2) {
     return task1.dueDate < task2.dueDate;
 }
 
 void addTask(vector<Task>& tasks) {
     Task newTask;
-    cout << "Enter the task description: ";
+    cout << "Enter task description: ";
     cin.ignore();
     getline(cin, newTask.description);
     cout << "Enter due date (DD-MM-YYYY): ";
@@ -100,7 +60,7 @@ void viewTasks(const vector<Task>& tasks) {
         cout << "Due Date: " << tasks[i].dueDate << " | ";
         cout << "Status: " << (tasks[i].completed ? "Completed" : "Incomplete") << "\n";
     }
-    cout << "--------------------\n";
+    cout << "---------------------\n";
 }
 
 void removeTask(vector<Task>& tasks) {
@@ -119,4 +79,44 @@ void removeTask(vector<Task>& tasks) {
     } else {
         cout << "Invalid task number.\n";
     }
+}
+
+int main() {
+    vector<Task> tasks;
+
+    int choice;
+    do {
+        cout << "\n----- To-Do List Manager -----\n";
+        cout << "1. Add New Task\n";
+        cout << "2. Mark Task as Completed\n";
+        cout << "3. View Tasks\n";
+        cout << "4. Remove Task\n";
+        cout << "5. Exit\n";
+        cout << "-----------------------------\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                addTask(tasks);
+                break;
+            case 2:
+                markTaskCompleted(tasks);
+                break;
+            case 3:
+                viewTasks(tasks);
+                break;
+            case 4:
+                removeTask(tasks);
+                break;
+            case 5:
+                cout << "Exiting program. Goodbye!\n";
+                break;
+            default:
+                cout << "Invalid choice. Please enter a number between 1 and 5.\n";
+        }
+
+    } while (choice != 5);
+
+    return 0;
 }

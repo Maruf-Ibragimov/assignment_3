@@ -22,7 +22,7 @@ int main() {
         cout << "4. Remove Task\n";
         cout << "5. Exit\n";
         cout << "-------------------------------\n";
-        cout << "Enter your choice 1-5: ";
+        cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice) {
@@ -56,10 +56,10 @@ bool compareDueDates(const Task& task1, const Task& task2) {
 
 void addTask(vector<Task>& tasks) {
     Task newTask;
-    cout << "Enter task description: ";
+    cout << "Enter the task description: ";
     cin.ignore();
-    getline(std::cin, newTask.description);
-    cout << "Enter due date (YYYY-MM-DD): ";
+    getline(cin, newTask.description);
+    cout << "Enter due date (DD-MM-YYYY): ";
     cin >> newTask.dueDate;
     newTask.completed = false;
 
@@ -69,13 +69,14 @@ void addTask(vector<Task>& tasks) {
 }
 
 void markTaskCompleted(vector<Task>& tasks) {
+    int taskNumber;
+
     if (tasks.empty()) {
         cout << "No tasks available.\n";
         return;
     }
 
     cout << "Enter task number to mark as completed: ";
-    int taskNumber;
     cin >> taskNumber;
 
     if (taskNumber >= 1 && taskNumber <= tasks.size()) {
@@ -92,14 +93,14 @@ void viewTasks(const vector<Task>& tasks) {
         return;
     }
 
-    cout << "\n===== Tasks =====\n";
+    cout << "\n----- Tasks -----\n";
     for (size_t i = 0; i < tasks.size(); ++i) {
         cout << i + 1 << ". ";
         cout << "Description: " << tasks[i].description << " | ";
         cout << "Due Date: " << tasks[i].dueDate << " | ";
         cout << "Status: " << (tasks[i].completed ? "Completed" : "Incomplete") << "\n";
     }
-    cout << "==================\n";
+    cout << "--------------------\n";
 }
 
 void removeTask(vector<Task>& tasks) {
